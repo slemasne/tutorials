@@ -1,1 +1,1 @@
-Sitemap: https://slemasne.github.io/tutorials/sitemap.xml
+Sitemap: https://fastpages.fast.ai/tutorials/sitemap.xml
