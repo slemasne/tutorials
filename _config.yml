@@ -6,7 +6,7 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Stephen LeMasney
+title: Stephen Lemasney
 description: Powered by [fastpages](https://fastpages.fast.ai/)
 github_username: slemasne
 # you can comment the below line out if your repo name is not different than your baseurl
@@ -39,7 +39,7 @@ baseurl: "tutorials" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: stephenlemasney
+    twitter: 
     github: slemasne
 
 # Set this to true to get LaTeX math equation support
@@ -72,9 +72,9 @@ include:
 # This specifies what badges are turned on by default for notebook posts.
 default_badges:
   github: true
-  binder: true
-  colab: true
-  deepnote: true
+  binder: false
+  colab: false
+  deepnote: false
 
 # Escape HTML in post descriptions
 html_escape:
