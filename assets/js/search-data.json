@@ -4,9 +4,9 @@
         "post0": {
             "title": "Copying objects in Python",
             "content": "In this tutorial we compare a shallow versus deep copy in Python using the inbuilt copy module. . from copy import copy . 1. Assignment . First we create a list called foo_list which has three items: two ints and one list of ints. We run the in-built id function to check the address of the list object in memory. . foo_list = [1, 2, [3, 4]] # check the item&#39;s address in memory id(foo_list) . 2930710693248 . Next we create a second variable called foo_list_two which is assigned to foo_list. We can see that both variables point to the same object in memory. . foo_list_two = foo_list # Check the two variables point to the same object id(foo_list) == id(foo_list_two) . True . foo_list[0] = 11 # Check the second list foo_list_two . [11, 2, [3, 4]] . %reset -f . 3. Shallow copy . foo_list = [1, 2, [3, 4]] # check the item&#39;s address in memory id(foo_list) . 2930709728704 . foo_list_two = foo_list.copy() # Check the two variables point to the same object id(foo_list) == id(foo_list_two) . False . foo_list[2][0] = 11 # Check the second list foo_list_two . [1, 2, [11, 4]] . 3. Deep copy . A deep copy creates a new object and recursively adds the copies of nested objects present in the original elements. . from copy import deepcopy . foo_list = [1, 2, [3, 4]] # check the item&#39;s address in memory id(foo_list) . 2930709811328 . foo_list_two = deepcopy(foo_list) # Check the two variables point to different objects id(foo_list) == id(foo_list_two) . False . foo_list[2][0] = 11 # Check that the deep copied list does not update print(foo_list) print(foo_list_two) . [11, 2, [11, 4]] [1, 2, [3, 4]] . foo_list[2][0] = 22 . print(foo_list) print(foo_list_two) . [11, 2, [22, 4]] [1, 2, [3, 4]] .",
-            "url": "https://fastpages.fast.ai/tutorials/2022/09/06/ShallowDeepCopy.html",
-            "relUrl": "/2022/09/06/ShallowDeepCopy.html",
-            "date": " • Sep 6, 2022"
+            "url": "https://fastpages.fast.ai/tutorials/2022/09/07/ShallowDeepCopy.html",
+            "relUrl": "/2022/09/07/ShallowDeepCopy.html",
+            "date": " • Sep 7, 2022"
         }
         
     
@@ -40,7 +40,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "Hi There! I am Stephen. I work in FinTech as a Sales Engineer. In this blog I share some Python and data tutorials. .",
+          "content": "Hi There! I am Stephen Lemasney. I work in FinTech as a Sales Engineer. In this blog I share some Python and data tutorials. .",
           "url": "https://fastpages.fast.ai/tutorials/about/",
           "relUrl": "/about/",
           "date": ""
