@@ -4,9 +4,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Running a Postgres database locally | Stephen Lemasney</title>
+<title>Tutorial Running a Postgres database locally | Stephen Lemasney</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Running a Postgres database locally" />
+<meta property="og:title" content="Tutorial Running a Postgres database locally" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Powered by fastpages" />
 <meta property="og:description" content="Powered by fastpages" />
@@ -16,9 +16,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-01-01T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Running a Postgres database locally" />
+<meta property="twitter:title" content="Tutorial Running a Postgres database locally" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-01-01T00:00:00-06:00","datePublished":"2018-01-01T00:00:00-06:00","description":"Powered by fastpages","headline":"Running a Postgres database locally","mainEntityOfPage":{"@type":"WebPage","@id":"https://fastpages.fast.ai/tutorials/2018/01/01/run-pg-locally.html"},"url":"https://fastpages.fast.ai/tutorials/2018/01/01/run-pg-locally.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-01-01T00:00:00-06:00","datePublished":"2018-01-01T00:00:00-06:00","description":"Powered by fastpages","headline":"Tutorial Running a Postgres database locally","mainEntityOfPage":{"@type":"WebPage","@id":"https://fastpages.fast.ai/tutorials/2018/01/01/run-pg-locally.html"},"url":"https://fastpages.fast.ai/tutorials/2018/01/01/run-pg-locally.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/tutorials/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://fastpages.fast.ai/tutorials/feed.xml" title="Stephen Lemasney" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -80,7 +80,7 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/tutorials/about/">About Me</a><a class="page-link" href="/tutorials/">Stephen Lemasney</a><a class="page-link" href="/tutorials/search/">Search</a><a class="page-link" href="/tutorials/categories/">Tags</a></div>
+        <div class="trigger"><a class="page-link" href="/tutorials/about/">About Me</a><a class="page-link" href="/tutorials/">Tutorials</a><a class="page-link" href="/tutorials/search/">Search</a><a class="page-link" href="/tutorials/categories/">Tags</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -88,7 +88,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Running a Postgres database locally</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2018-01-01T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Tutorial Running a Postgres database locally</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2018-01-01T00:00:00-06:00" itemprop="datePublished">
         Jan 1, 2018
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -138,23 +138,37 @@ window.onload = wrap_img;
 <h2 id="1.-Run-the-Docker-container">1. Run the Docker container<a class="anchor-link" href="#1.-Run-the-Docker-container"> </a></h2><p>First we need to run the postgres container:</p>
 <div class="highlight"><pre><span></span>docker run --name postgres -d -p <span class="m">5432</span>:5432 -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>postgres -e <span class="nv">POSTGRES_USER</span><span class="o">=</span>postgres -e <span class="nv">POSTGRES_DB</span><span class="o">=</span>employees -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>/postgres-docker:/var/lib/postgresql/data postgres
 </pre></div>
-<p>Let's deconstruct this docker command:</p>
-<p><code>docker run --name postgres [OPTIONS] postgres</code></p>
+<p>Let's deconstruct this docker command..</p>
+<p>Run a container called <b>postgres</b> using the postgres image:</p>
 <ul>
-<li>Run a container called <b>postgres</b> using the postgres image.</li>
+<li><code>docker run --name postgres [OPTIONS] postgres</code></li>
 </ul>
-<p><code>-d</code></p>
+<p>Run as a detached container, so it runs in the background of your terminal</p>
 <ul>
-<li>Run as a detached container, so it runs in the background of your terminal</li>
+<li><code>-d</code></li>
 </ul>
-<p><code>-p 5432:5432</code></p>
+<p>Map port 5432 on the localhost to 5432 in the container</p>
+<ul>
+<li><code>-p 5432:5432</code></li>
+</ul>
+<p>Next we pass some Postgres specific environment variables to the Postgres container. You will need to use the User and Password to connect.</p>
+<ul>
+<li><code>-e POSTGRES_PASSWORD=postgres</code></li>
+<li><code>-e POSTGRES_USER=postgres</code> </li>
+<li><code>-e POSTGRES_DB=employees</code></li>
+</ul>
+<p>Finally map the container volumne to a local volume:</p>
+<ul>
+<li><code>-v ${PWD}/postgres-docker:/var/lib/postgresql/data postgres</code></li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="2.-Connect-to-the-Postgres-database">2. Connect to the Postgres database<a class="anchor-link" href="#2.-Connect-to-the-Postgres-database"> </a></h2>
+<h2 id="2.-Connect-to-the-Postgres-database">2. Connect to the Postgres database<a class="anchor-link" href="#2.-Connect-to-the-Postgres-database"> </a></h2><p>Once the container is up-and-running, we can connect to the Postgres database using the sqlalchemy Python package. First, you create an engine object using the Postgres login credentials specified above:</p>
+
 </div>
 </div>
 </div>
@@ -168,10 +182,35 @@ window.onload = wrap_img;
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span> 
 
 <span class="n">db</span><span class="o">=</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5432/employees&quot;</span><span class="p">)</span>
+</pre></div>
 
-<span class="n">bootstrap_sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+    </div>
+</div>
+</div>
 
-<span class="s2">CREATE TABLE COMPANY(</span>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Write an SQL string to:</p>
+
+<pre><code>1. Create a new table called employee_details
+2. Populate this table with some data</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bootstrap_sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">CREATE TABLE EMPLOYEE_DETAILS(</span>
 <span class="s2">   ID INT PRIMARY KEY     NOT NULL,</span>
 <span class="s2">   NAME           TEXT    NOT NULL,</span>
 <span class="s2">   AGE            INT     NOT NULL,</span>
@@ -180,12 +219,34 @@ window.onload = wrap_img;
 <span class="s2">   JOIN_DATE      DATE</span>
 <span class="s2">);</span>
 
-<span class="s2">INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, &#39;John&#39;, 32, &#39;London&#39;, 20000.00,&#39;2001-07-13&#39;);</span>
-<span class="s2">INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (2, &#39;David&#39;, 25, &#39;Dublin&#39;, 30000.00, &#39;2007-12-13&#39;);</span>
-<span class="s2">INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (3, &#39;Sarah&#39;, 25, &#39;Edinburgh&#39;, 40000.00, &#39;2007-12-13&#39;);</span>
+<span class="s2">INSERT INTO EMPLOYEE_DETAILS (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE)VALUES (1, &#39;John&#39;, 32, &#39;London&#39;, 20000.00,&#39;2001-07-13&#39;);</span>
+<span class="s2">INSERT INTO EMPLOYEE_DETAILS (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (2, &#39;David&#39;, 25, &#39;Dublin&#39;, 30000.00, &#39;2007-12-13&#39;);</span>
+<span class="s2">INSERT INTO EMPLOYEE_DETAILS (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (3, &#39;Sarah&#39;, 25, &#39;Edinburgh&#39;, 40000.00, &#39;2007-12-13&#39;);</span>
 <span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
 
-<span class="k">with</span> <span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pass that SQL string to the database engine object:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">db</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">con</span><span class="p">:</span>
     
     <span class="k">try</span><span class="p">:</span>
 
