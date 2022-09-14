@@ -4,9 +4,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Deploying a Python app with Docker and Kubernetes (Part 2) | Stephen Lemasney</title>
+<title>Deploying a Python app - Part 2 (Kubernetes) | Stephen Lemasney</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Deploying a Python app with Docker and Kubernetes (Part 2)" />
+<meta property="og:title" content="Deploying a Python app - Part 2 (Kubernetes)" />
 <meta name="author" content="Stephen Lemasney" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Powered by Fastpages" />
@@ -17,9 +17,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-01-04T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Deploying a Python app with Docker and Kubernetes (Part 2)" />
+<meta property="twitter:title" content="Deploying a Python app - Part 2 (Kubernetes)" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stephen Lemasney"},"dateModified":"2018-01-04T00:00:00-06:00","datePublished":"2018-01-04T00:00:00-06:00","description":"Powered by Fastpages","headline":"Deploying a Python app with Docker and Kubernetes (Part 2)","mainEntityOfPage":{"@type":"WebPage","@id":"https://slemasne.github.io/tutorials/tutorials/2018/01/04/flask-app-with-k8s.html"},"url":"https://slemasne.github.io/tutorials/tutorials/2018/01/04/flask-app-with-k8s.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stephen Lemasney"},"dateModified":"2018-01-04T00:00:00-06:00","datePublished":"2018-01-04T00:00:00-06:00","description":"Powered by Fastpages","headline":"Deploying a Python app - Part 2 (Kubernetes)","mainEntityOfPage":{"@type":"WebPage","@id":"https://slemasne.github.io/tutorials/tutorials/2018/01/04/flask-app-with-k8s.html"},"url":"https://slemasne.github.io/tutorials/tutorials/2018/01/04/flask-app-with-k8s.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/tutorials/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://slemasne.github.io/tutorials/tutorials/feed.xml" title="Stephen Lemasney" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -89,7 +89,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Deploying a Python app with Docker and Kubernetes (Part 2)</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2018-01-04T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Deploying a Python app - Part 2 (Kubernetes)</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2018-01-04T00:00:00-06:00" itemprop="datePublished">
         Jan 4, 2018
       </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,15 +226,16 @@ trains-758d4f498c-kfbpq   <span class="m">1</span>/1     Running   <span class="
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We check the pod is online by running a curl command and see a status code of 200 -- this is good news.</p>
+<p>We check the pod is online by running a curl command.</p>
 <div class="highlight"><pre><span></span>$ curl -I http://127.0.0.1:5000/
-
-HTTP/1.0 <span class="m">200</span> OK
-Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>utf-8
-Content-Length: <span class="m">21</span>
-Server: Werkzeug/1.0.1 Python/3.7.9
-Date: Wed, <span class="m">14</span> Sep <span class="m">2022</span> <span class="m">18</span>:01:56 GMT
 </pre></div>
+<p>This command returns a status code of 200:</p>
+
+<pre><code>HTTP/1.0 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 21
+Server: Werkzeug/1.0.1 Python/3.7.9
+Date: Wed, 14 Sep 2022 18:01:56 GMT</code></pre>
 
 </div>
 </div>
